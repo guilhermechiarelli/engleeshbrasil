@@ -1,0 +1,35 @@
+<div class="wrapper-big">
+  <section>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="align-self-center">
+            <center>
+              <h1 class="text-primary">Grammar</h1>
+              <p class="mt-3">What do you want to focus on?</p>
+            </center>
+          </div>
+        </div>
+      </div> <!-- fim row 1 -->
+      <hr class="bg-dark">
+      {{> _flash}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card text-center bg-dark mt-4 mb-4">
+            <div class="card-header">
+              List
+            </div>
+            <div class="card-body">
+              {{#each grammar}}
+              <p class="card-text"><a href="/app/grammar/{{slug}}">{{name}}</a></p>
+              {{/each}}
+            </div>
+            <div class="card-footer text-muted">
+              <a href="/news" class="btn btn-primary">See All</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

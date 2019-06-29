@@ -1,0 +1,23 @@
+{{#if flashSuccess}}
+<div class="row justify-content-center">
+  <div class="col-ex-12 col-lg-6">
+    <div class="alert alert-success">
+      <center>
+        {{flashSuccess}}
+      </center>
+    </div>
+  </div>
+</div>
+{{/if}}
+
+{{#if flashError}}
+<div class="row justify-content-center">
+  <div class="col-ex-12 col-lg-6">
+    <div class="alert alert-danger">
+      <center>
+        {{flashError}}
+      </center>
+    </div>
+  </div>
+</div>
+{{/if}}

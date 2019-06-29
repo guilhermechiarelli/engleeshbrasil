@@ -1,0 +1,27 @@
+{
+  "name": "englishnews",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "crypto": "^1.0.1",
+    "email-validator": "^2.0.4",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "express-session": "^1.16.1",
+    "handlebars": "^4.1.2",
+    "handlebars-paginate": "^0.1.0",
+    "mongoose": "^5.5.2",
+    "mongoose-paginate": "^5.0.3",
+    "nodemailer": "^6.2.1",
+    "nodemon": "^1.18.11"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
+  }
+}

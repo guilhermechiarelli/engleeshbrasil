@@ -1,0 +1,29 @@
+<div class="wrapper-small">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-12">
+        <center>
+          <h1 class="text-primary">Welcome, {{user.name}}!</h1>
+          <p>Here's the information about your profile. If you want to update it, don't forget to type your password!
+          </p>
+        </center>
+      </div>
+    </div>
+    {{> _flash}}
+    <div class="row justify-content-center mt-3">
+      <div class="col-lg-6">
+        <div class="post-form">
+          <form action="/app/profile/{{user._id}}" method="POST">
+            <input type="text" name="name" value="{{user.name}}" class="form-control" maxlength="20" required>
+            <input type="text" name="surname" value="{{user.surname}}" class="form-control mt-2" maxlength="50"
+              required>
+            <span class="form-control mt-2" style="background-color: #E8E8E8;">{{user.email}}</span>
+            <input type="password" name="senha" placeholder="Type your password" class="form-control mt-4"
+              maxlength="30">
+            <button type="submit" class="form-control btn btn-primary mt-4">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

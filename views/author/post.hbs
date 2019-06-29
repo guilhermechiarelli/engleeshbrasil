@@ -1,0 +1,98 @@
+<section>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <center>
+        <p class="p-2 bg-success text-dark h6">Author Settings</p>
+      </center>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12 d-flex justify-content-center">
+        <div class="align-self-center">
+          <center>
+            <h1 class="text-success">
+              What do you want to post?
+            </h1>
+            <p class="mt-3">
+              Here you can type a new article. Just fill out the fields, press the "create article" button and be happy!
+            </p>
+          </center>
+        </div>
+      </div>
+    </div> {{!-- End row 1 --}}
+    {{> _flash}}
+    <div class="row justify-content-center mt-2">
+      <div class="col-md-12 col-lg-6 mb-4">
+        <center>
+          <div class="post-form">
+            <form action="/author/post/add" method="POST"
+              onsubmit="return confirm('Are you sure you want to post the new article?');">
+              <input type="text" name="postsubject" placeholder="Subject" class="form form-control" id="postsubject"
+                required />
+              <select name="postcategory" class="form form-control mt-2" required>
+                {{#each cat}}
+                <option value="{{_id}}">{{name}}</option>
+                {{else}}
+                <option value="0">No categories registered</option>
+                {{/each}}
+              </select>
+              <textarea name="postcontent" cols="30" rows="10" class="form form-control mt-2" placeholder="Content"
+                style="resize: none;" id="field1" required></textarea>
+              <button type="button" onclick="addTag('b');" id="btn" class="btn btn-light btn-sm mt-2"><i
+                  class="fas fa-bold"></i></button>
+              <button type="button" onclick="addTag('i');" class="btn btn-light btn-sm mt-2"><i
+                  class="fas fa-italic"></i></button>
+              <button type="button" onclick="addTag('u');" class="btn btn-light btn-sm mt-2"><i
+                  class="fas fa-underline"></i></button>
+              <select name="grammarrule" class="form form-control mt-2" required>
+                {{#each grammar}}
+                <option value="{{_id}}">{{name}}</option>
+                {{else}}
+                <option value="0">No grammar rules registered</option>
+                {{/each}}
+              </select>
+              <textarea name="postgrammar" cols="30" rows="2" class="form form-control mt-2" placeholder="Grammar Tip"
+                style="resize: none;" required></textarea>
+              <textarea name="postvocab" cols="30" rows="2" class="form form-control mt-2" placeholder="Vocab Tip"
+                style="resize: none;" required></textarea>
+              <button type="submit" class="btn btn-success mt-3">Create Article</button>
+            </form>
+          </div>
+        </center>
+      </div>
+    </div>{{!-- End row 2 --}}
+  </div>{{!-- End container --}}
+</section>
+<script type="text/javascript">
+  function addTag(tag) {
+    var selection = '';
+    var textarea = document.getElementById('field1');
+    // Internet Explorer
+    if (textarea.selectionStart === undefined) {
+      var textrange = document.selection.createRange();
+      var selection = textrange.text;
+
+      if (selection == '') {
+        alert('Sem texto seleccionado.');
+      }
+      else {
+        textarea.focus();
+        textrange.text = '<' + tag + '>' + selection + '</' + tag + '>';
+      }
+    }
+    else {
+      if (textarea.selectionStart != textarea.selectionEnd) {
+        selection = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+        var selection_start = textarea.value.substring(0, textarea.selectionStart);
+        var selection_end = textarea.value.substring(textarea.selectionEnd);
+      }
+
+      if (selection == '') {
+        alert('Please, select a piece of text to add the tag!');
+      }
+      else {
+        textarea.value = selection_start + '<' + tag + '>' + selection + '</' + tag + '>' + selection_end;
+      }
+    }
+  }
+</script>

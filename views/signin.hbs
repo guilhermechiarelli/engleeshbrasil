@@ -1,0 +1,46 @@
+<div class="wrapper-small">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-12">
+        <center>
+          <h1 class="text-primary">
+            Login
+          </h1>
+          <p class="mt-3">
+            Faça seu login com suas informações abaixo e acompanhe as notícias de seu interesse.
+          </p>
+        </center>
+      </div>
+    </div>
+    {{> _flash}}
+    {{#if resend}}
+    <center>
+      <p>Não recebeu o e-mail? <a href="/resend">Clique aqui</a></p>
+    </center>
+    {{/if}}
+    <div class="row justify-content-center mt-2">
+      <div class="col-md-12 col-lg-6">
+        <div class="post-form">
+          <form action="/signin" method="POST">
+            <center>
+              <input type="email" name="email" placeholder="E-mail" class="form-control" maxlength="50" required>
+              <input type="password" name="password" placeholder="Password" class="form-control mt-2" maxlength="50"
+                required>
+              <button type="submit" class="form-control btn btn-primary mt-4 mb-4">Go!</button>
+              <a href="/forgot">Esqueci minha senha</a>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <center>
+          <p>
+            Não é registrado? <a href="/signup">Registre-se</a>
+          </p>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

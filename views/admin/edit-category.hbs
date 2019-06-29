@@ -1,0 +1,73 @@
+<div class="wrapper-small">
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <center>
+          <p class="p-2 bg-warning text-dark h6">Admin Settings</p>
+        </center>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="align-self-center">
+            <center>
+              <h1 class="text-warning">
+                Edit Category
+              </h1>
+              <p class="mt-3">
+                Change the field's content to change the category or delete it.
+              </p>
+            </center>
+          </div>
+        </div>
+      </div>
+      {{> _flash}}
+      <div class="row justify-content-center mt-2">
+        <div class="col-md-12 col-lg-6">
+          <div class="post-form">
+            <center>
+              {{#each category}}
+              <form action="/admin/category/update/{{_id}}" method="POST"
+                onsubmit="return confirm('Are you sure you want to UPDATE {{name}}?');">
+                <input type="text" name="name" value="{{name}}" class="form form-control" id="categoryname"
+                  onkeyup="change();" required />
+                <input type="text" name="slug" value="{{slug}}" class="form form-control mt-2" id="categoryslug"
+                  required readonly />
+                {{/each}}
+                <button type="submit" class="btn btn-primary mt-2">Edit</button>
+              </form>
+              {{#each category}}
+              <form action="/admin/category/delete/{{_id}}" method="POST"
+                onsubmit="return confirm('Are you sure you want to DELETE {{name}}?');">
+                <button type="submit" class="btn btn-danger mt-2">Delete</button>
+              </form>
+              {{/each}}
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="text/javascript">
+  function change() {
+    const categoryName = document.getElementById("categoryname");
+    const categorySlug = document.getElementById("categoryslug");
+    categorySlug.value = categoryName.value.toLowerCase().replace(/\s/g, "-")
+      .replace(/[ÀÁÂÃÄÅ]/g, "A")
+      .replace(/[àáâãäå]/g, "a")
+      .replace(/[ÈÉÊË]/g, "E")
+      .replace(/[èéêë]/g, "e")
+      .replace(/[ÌÍÎÏ]/g, "I")
+      .replace(/[ìíîï]/g, "i")
+      .replace(/[ÒÓÔÖÕ]/g, "O")
+      .replace(/[òóôöõ]/g, "o")
+      .replace(/[ÙÚÛÜ]/g, "U")
+      .replace(/[ùúûü]/g, "u")
+      .replace(/[ç]/g, "c")
+      .replace(/[ñ]/g, "n")
+      .replace(/[']/g, "-")
+      .replace(/[~`´¨ªº°§¬¢£³²¹–!‘’@#$%^&*(){}\[\];:"'<,.>?\/\\|_+=]/g, "")
+      .replace(/\s/g, "-")
+      .replace(" ", "-");
+  }
+</script>

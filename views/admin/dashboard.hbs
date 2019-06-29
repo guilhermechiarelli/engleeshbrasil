@@ -1,0 +1,40 @@
+<div class="wrapper-small">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <center>
+        <p class="p-2 bg-warning text-dark h6">Admin Settings</p>
+      </center>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <center>
+          <h1>Welcome, {{user.name}}!</h1>
+          <p>What do you want to do?</p>
+        </center>
+      </div>
+    </div>
+    {{> _flash}}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-center bg-dark mt-2 mb-4">
+          <div class="card-header">
+            Options
+          </div>
+          <div class="card-body">
+            <a href="/admin/pendding/posts" style="color:#dcdcdc"><button class="btn btn-primary">Pendding
+                Posts</button></a>
+            <br>
+            <a href="/admin/news" style="color:#dcdcdc"><button
+                class="btn btn-primary mt-3 pl-4 pr-4">Posts</button></a>
+            <br>
+            <a href="/admin/categories" style="color:#dcdcdc"><button
+                class="btn btn-primary mt-3">Categories</button></a>
+            <br>
+            <a href="/admin/grammarrule" style="color:#dcdcdc"><button class="btn btn-primary mt-3">Grammar
+                Rules</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

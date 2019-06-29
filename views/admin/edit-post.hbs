@@ -1,0 +1,128 @@
+<section>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <center>
+        <p class="p-2 bg-warning text-dark h6">Admin Settings</p>
+      </center>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12 d-flex justify-content-center">
+        <div class="align-self-center">
+          <center>
+            <h1 class="text-warning">
+              Edit Article
+            </h1>
+            <p>Here you can <b>edit</b> the article or even <b>delete</b> it. Just put the correct information in each
+              field, please.</p>
+          </center>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+      <div class="col-md-12 col-lg-6 mb-4">
+        <center>
+          {{#each post}}
+          <div class="post-form">
+            <form action="/admin/news/update/{{_id}}" method="POST"
+              onsubmit="return confirm('Are you sure you want to UPDATE it?');">
+              <div class="form-group">
+                <label for="postsubject">Subject:</label>
+                <input type="text" name="subject" value="{{subject}}" class="form form-control" id="postsubject"
+                  required />
+              </div>
+              <div class="form-group">
+                <label for="postcontent">Content:</label>
+                <textarea name="content" cols="30" rows="10" class="form form-control" style="resize: none;"
+                  id="postcontent" required>{{content}}</textarea>
+                <button type="button" onclick="addTag('b');" class="btn btn-light btn-sm mt-2"><i
+                    class="fas fa-bold"></i></button>
+                <button type="button" onclick="addTag('i');" class="btn btn-light btn-sm mt-2"><i
+                    class="fas fa-italic"></i></button>
+                <button type="button" onclick="addTag('u');" class="btn btn-light btn-sm mt-2"><i
+                    class="fas fa-underline"></i></button>
+              </div>
+              <div class="form-group">
+                <label for="grammartip">Grammar Tip:</label>
+                <textarea name="grammartip" cols="30" rows="5" class="form form-control" style="resize: none;"
+                  id="postgrammar" required>{{grammartip}}</textarea>
+              </div>
+              <div class="form-group">
+                <label for="postvocab">Vocab Tip:</label>
+                <textarea name="vocabtip" cols="30" rows="5" class="form form-control" style="resize: none;"
+                  id="postvocab" required>{{vocabtip}}</textarea>
+              </div>
+              {{/each}}
+              <div class="form-group">
+                <label for="postcategory">Category:</label>
+                <select name="category" class="form form-control" id="postcategory" required>
+                  {{#each post}}
+                  <option selected value="{{category._id}}">{{category.name}}</option>
+                  {{/each}}
+                  {{#each cat}}
+                  <option value="{{_id}}">{{name}}</option>
+                  {{else}}
+                  <option value="0">No categories registered</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="postgrammarrule">Grammar Rule:</label>
+                <select name="grammarrule" class="form form-control" id="postgrammarrule" required>
+                  {{#each post}}
+                  <option selected value="{{grammarrule._id}}">{{grammarrule.name}}</option>
+                  {{/each}}
+                  {{#each grammar}}
+                  <option value="{{_id}}">{{name}}</option>
+                  {{else}}
+                  <option value="0">No grammar rule registered</option>
+                  {{/each}}
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary mt-4">Update Post</button>
+            </form>
+            {{#each post}}
+            <form action="/admin/news/delete/{{_id}}" method="POST"
+              onsubmit="return confirm('Are you sure you want to DELETE the post?');">
+              <button class=" btn btn-danger mt-3">Delete Post</button>
+            </form>
+            {{/each}}
+          </div>
+        </center>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  function addTag(tag) {
+    var selection = '';
+    var textarea = document.getElementById('postcontent');
+    // Internet Explorer
+    if (textarea.selectionStart === undefined) {
+      var textrange = document.selection.createRange();
+      var selection = textrange.text;
+      if (selection == '') {
+        alert('Sem texto seleccionado.');
+      }
+      else {
+        textarea.focus();
+        textrange.text = '<' + tag + '>' + selection + '</' + tag + '>';
+      }
+    }
+    else {
+      if (textarea.selectionStart != textarea.selectionEnd) {
+        selection = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+
+        var selection_start = textarea.value.substring(0, textarea.selectionStart);
+        var selection_end = textarea.value.substring(textarea.selectionEnd);
+      }
+
+      if (selection == '') {
+        alert('Please, select a piece of text to add the tag!');
+      }
+      else {
+        textarea.value = selection_start + '<' + tag + '>' + selection + '</' + tag + '>' + selection_end;
+      }
+    }
+  }
+</script>
+</script>

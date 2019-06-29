@@ -1,0 +1,42 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+    <div class="container">
+      <a href="/" class="navbar-brand"><img src="/logo.png"></a>
+
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav-principal">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/news" class="nav-link">News</a></li>
+          <li class="nav-item"><a href="/categories" class="nav-link">Categories</a></li>
+          <li class="nav-item"><a href="/grammar" class="nav-link">Grammar</a></li>
+          {{#if user}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              {{user.name}}
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item text-light" href="/app/profile">Profile</a>
+              {{#if admin}}
+              <a class="dropdown-item text-light" href="/admin/dashboard">Admin Dashboard</a>
+              {{/if}}
+              {{#if author}}
+              <a class="dropdown-item text-light" href="/author/dashboard">Author Dashboard</a>
+              {{/if}}
+              <a class="dropdown-item text-light" href="/logout">Logout</a>
+            </div>
+          </li>
+          {{else}}
+          <li class="nav-item"><a href="/signin" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="/signup" class="nav-link">Register</a></li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

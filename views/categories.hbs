@@ -1,0 +1,36 @@
+<div class="wrapper-big">
+  <section>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="align-self-center">
+            <center>
+              <h1 class="text-primary">Categories</h1>
+              <p class="mt-3">Choose a category of your interest. If you can't find one, keep calm... We're
+                constantly updating the categories.</p>
+            </center>
+          </div>
+        </div>
+      </div> <!-- fim row 1 -->
+      <hr class="bg-dark">
+      {{> _flash}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card text-center bg-dark mt-4">
+            <div class="card-header">
+              List
+            </div>
+            <div class="card-body">
+              {{#each categories}}
+              <p class="card-text"><a href="/app/categories/{{slug}}">{{name}}</a></p>
+              {{/each}}
+            </div>
+            <div class="card-footer text-muted">
+              <a href="/news" class="btn btn-primary">See All</a>
+            </div>
+          </div>
+        </div>
+      </div> <!-- fim row 2 -->
+    </div> <!-- fim container -->
+  </section>
+</div>

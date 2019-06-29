@@ -1,0 +1,41 @@
+<div class="wrapper-small">
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <center>
+          <p class="p-2 bg-warning text-dark h6">Admin Settings</p>
+        </center>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-12 d-flex justify-content-center">
+          <div class="align-self-center">
+            <center>
+              <h1 class="text-warning">Categories</h1>
+              <p class="mt-3">That's the Category List. Here you can <b>add</b> a new one, <b>edit</b> or
+                <b>delete</b> some.</p>
+            </center>
+          </div>
+        </div>
+      </div>
+      {{> _flash}}
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card text-center bg-dark mt-2 mb-4">
+            <div class="card-header">
+              Categories
+            </div>
+            <div class="card-body">
+              {{#each cat}}
+              <p class="card-text"><a href="/admin/category/edit/{{slug}}">{{name}}</a>
+              </p>
+              {{/each}}
+            </div>
+            <div class="card-footer text-muted">
+              <a href="/admin/category/add" class="btn btn-primary">Add</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

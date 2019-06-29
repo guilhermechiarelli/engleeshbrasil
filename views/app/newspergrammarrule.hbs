@@ -1,0 +1,71 @@
+<div class="wrapper-big">
+  <div class="container">
+    {{#each posts}}
+    <div class="row mt-4 mb-4">
+      <div class="col-md-8">
+        <h2 class="text-primary"><a href="/app/news/{{slug}}">{{subject}}</a></h2>
+        <div class="newlines">
+          <p align="justify" class="p">{{summary}}</p>
+        </div>
+        <span>Category: <a href="/app/categories/{{category.slug}}">{{category.name}}</a></span>
+      </div>
+      <div class="col-md-4 align-self-center">
+        <div class="card text-center bg-dark mt-4 mb-2">
+          <div class="card-header text-primary">
+            Tips
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <p>In the report we're going to explain more about <span class="text-warning">{{grammarrule.name}}</span>.
+              </p>
+              <a href="/app/news/{{slug}}">See more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    {{/each}}
+    <div class="row">
+      <div class="col-12">
+        {{#if posts}}
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            {{#paginate pagination type="first"}}
+            <li class="page-item" {{#if disabled}}class="disabled" {{/if}}>
+              <a href="?p={{n}}" class="page-link"><i class=" fas fa-angle-double-left"></i>
+              </a>
+            </li>
+            {{/paginate}}
+            {{#paginate pagination type="previous"}}
+            <li class="page-item" {{#if disabled}}class="disabled" {{/if}}>
+              <a href="?p={{n}}" class="page-link"><i class="fas fa-angle-left"></i>
+              </a>
+            </li>
+            {{/paginate}}
+            {{#paginate pagination type="middle" limit="5"}}
+            <li class="page-item" {{#if active}}class="active" {{/if}}><a href="?p={{n}}" class="page-link">{{n}}</a>
+            </li>
+            {{/paginate}}
+            {{#paginate pagination type="next"}}
+            <li class="page-item" {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}" class="page-link"><i
+                  class="fas fa-angle-right"></i></a>
+            </li>
+            {{/paginate}}
+            {{#paginate pagination type="last"}}
+            <li class="page-item" {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}" class="page-link"><i
+                  class="fas fa-angle-double-right"></i></a></li>
+            {{/paginate}}
+          </ul>
+        </nav>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var x = document.getElementsByClassName("p").length;
+  for (i = 0; i <= x; i++) {
+    document.getElementsByClassName("p")[i].innerHTML = document.getElementsByClassName("p")[i].textContent;
+  }
+</script>
