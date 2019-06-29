@@ -17,17 +17,10 @@ const MongoStore = require("connect-mongo")(session);
 class App {
   constructor() {
     this.express = express();
-    this.database();
     this.middlewares();
+    this.database();
     this.views();
     this.routes();
-  }
-
-  database() {
-    mongoose.connect(databaseConfig.uri, {
-      useCreateIndex: true,
-      useNewUrlParser: true
-    });
   }
 
   middlewares() {
@@ -41,15 +34,22 @@ class App {
           secure: IN_PROD,
           sameSite: true
         },
-        store: new MongoStore({ mongooseConnection: mongoose.connection }),
         name: process.env.SESS_NAME,
         secret: process.env.SESS_SECRET,
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        store: new MongoStore({ mongooseConnection: mongoose.connection })
       })
     );
 
     this.express.use(flash());
+  }
+
+  database() {
+    mongoose.connect(databaseConfig.uri, {
+      useCreateIndex: true,
+      useNewUrlParser: true
+    });
   }
 
   views() {
