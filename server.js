@@ -12,6 +12,7 @@ const handleb = require("handlebars");
 const FIVE_HOURS = 1000 * 60 * 60 * 5;
 const { SESS_LIFETIME = FIVE_HOURS } = process.env;
 const IN_PROD = process.env.NODE_ENV === "production";
+const MongoStore = require("connect-mongo")(session);
 
 class App {
   constructor() {
@@ -40,6 +41,7 @@ class App {
           secure: IN_PROD,
           sameSite: true
         },
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
         name: process.env.SESS_NAME,
         secret: process.env.SESS_SECRET,
         resave: false,
