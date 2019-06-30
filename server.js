@@ -1,4 +1,4 @@
-//require("dotenv").config();
+require("dotenv").config();
 
 const express = require("express");
 const handlebars = require("express-handlebars");
@@ -6,6 +6,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const databaseConfig = require("./config/database");
 const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const paginate = require("handlebars-paginate");
 const handleb = require("handlebars");
@@ -17,16 +18,26 @@ const MongoStore = require("connect-mongo")(session);
 class App {
   constructor() {
     this.express = express();
-    this.middlewares();
     this.database();
+    this.middlewares();
     this.views();
     this.routes();
+  }
+
+  database() {
+    mongoose.connect(databaseConfig.uri, {
+      useCreateIndex: true,
+      useNewUrlParser: true
+    });
+
+    mongoose.Promise = global.Promise;
   }
 
   middlewares() {
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(express.static(path.join(__dirname, "/public")));
 
+    this.express.use(cookieParser());
     this.express.use(
       session({
         cookie: {
@@ -43,13 +54,6 @@ class App {
     );
 
     this.express.use(flash());
-  }
-
-  database() {
-    mongoose.connect(databaseConfig.uri, {
-      useCreateIndex: true,
-      useNewUrlParser: true
-    });
   }
 
   views() {
