@@ -1,4 +1,4 @@
-# engleeshbrasil
+# Engleesh Brasil
 
 Plataforma de notícias e artigos em inglês.
 
