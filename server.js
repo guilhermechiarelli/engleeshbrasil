@@ -10,8 +10,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const paginate = require("handlebars-paginate");
 const handleb = require("handlebars");
-//const FIVE_HOURS = 1000 * 60 * 60 * 5;
-//const { SESS_LIFETIME = FIVE_HOURS } = process.env;
 //const IN_PROD = process.env.NODE_ENV === "production";
 const MongoStore = require("connect-mongo")(session);
 
